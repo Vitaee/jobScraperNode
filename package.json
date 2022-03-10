@@ -1,0 +1,27 @@
+{
+    "name": "api",
+    "version": "1.0.0",
+    "description": "Web Scraper for scraping jobs and filtering, sorting etc.",
+    "main": "source/server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Vitaee/jobScraperNode.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Vitaee/jobScraperNode/issues"
+    },
+    "homepage": "https://github.com/Vitaee/jobScraperNode#readme",
+    "dependencies": {
+        "axios": "^0.26.1",
+        "cheerio": "^1.0.0-rc.10",
+        "dotenv": "^16.0.0",
+        "express": "^4.17.3",
+        "express-async-errors": "^3.1.1",
+        "morgan": "^1.10.0"
+    }
+}
