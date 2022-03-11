@@ -78,7 +78,7 @@ const saveDatas = async (data: Idata) => {
 };
 
 const scrapeJobs = async (req, res) => {
-    let sourceLinks;
+    let sourceLinks: any[];
     req.query.startPage ? (sourceLinks = await scrapePages(req.query.startPage, req.query.endPage)) : (sourceLinks = await scrapePages(1, 1));
 
     let jobDetails = await scrapeDetails(sourceLinks);
