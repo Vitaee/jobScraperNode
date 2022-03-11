@@ -32,21 +32,31 @@ const scrapePages = async (startPage = 1, endPage = 2) => {
  *
  * @param {Array} sourceLinks - Contains source links
  */
+interface Idata {
+    datas: {
+        title: string;
+        location: string;
+        description: string;
+        postedDate: string;
+        compName: string;
+    }[];
+}
+
 const scrapeDetails = async (sourceLinks) => {
     let loop_datas = { datas: [] };
 
     for (let index = 0; index < sourceLinks.length; index++) {
-        let html = await axios.get(sourceLinks[index]);
+        const html = await axios.get(sourceLinks[index]);
 
-        let $ = await cheerio.load(html.data);
+        const $ = await cheerio.load(html.data);
 
-        let title = $("#titleH1").text();
-        let location = $(".colorLocation").text();
-        let description = $(".normalText").text();
-        let postedDate = $("#PostedDate").text();
-        let compName = $(".colorCompany").text();
+        const title = $("#titleH1").text();
+        const location = $(".colorLocation").text();
+        const description = $(".normalText").text();
+        const postedDate = $("#PostedDate").text();
+        const compName = $(".colorCompany").text();
 
-        js_data = {
+        const js_data = {
             title: title,
             location: location,
             description: description,
@@ -59,7 +69,7 @@ const scrapeDetails = async (sourceLinks) => {
     return loop_datas;
 };
 
-const saveDatas = async (data) => {
+const saveDatas = async (data: Idata) => {
     const fs = require("fs");
 
     fs.writeFile("../../../data.json", JSON.stringify(data), "utf8", function (err) {
@@ -71,14 +81,8 @@ const saveDatas = async (data) => {
     });
 };
 
-module.exports = async (req, res) => {
+const scrapeJobs = async (req, res) => {
     console.log("scrape details");
 };
 
-async function test() {
-    let data = await scrapePages(1, 2);
-    let details = await scrapeDetails(data);
-    let save = await saveDatas(details);
-}
-
-test();
+export default scrapeJobs;

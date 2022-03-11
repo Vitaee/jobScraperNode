@@ -1,15 +1,14 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const morgan = require("morgan");
+import express from "express";
+const dotenv = require("dotenv").config();
+import morgan from "morgan";
 
 const app = express();
-dotenv.config({ path: "../.env" });
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set("trust proxy", true);
 
-const Routes = require("./api/routes");
+import Routes from "./api/routes";
 
 app.get("/", (req, res) => {
     res.status(200).json({ resultMessage: "Our App is successfully working..." });
@@ -39,7 +38,7 @@ app.use((error, req, res, next) => {
             resultMessage: { msg: error.messagge }
         });
     } else {
-        res.json(errorJson(error.message, "External Error"));
+        res.json(error.message, "External Error");
     }
 });
 
