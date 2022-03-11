@@ -1,6 +1,6 @@
-const axios = require("axios");
-const cheerio = require("cheerio");
-
+import axios from "axios";
+import cheerio from "cheerio";
+import fs from "fs";
 /**
  * Scrape job source links from home page end return them in the list.
  *
@@ -18,7 +18,7 @@ const scrapePages = async (startPage = 1, endPage = 2) => {
 
         let html = await axios.get(url);
 
-        let $ = await cheerio.load(html.data);
+        let $ = cheerio.load(html.data);
         $(".snippetPadding").each((i, elem) => {
             sourceLinks.push("https://www.postjobfree.com" + $(elem).find("h3").find("a").attr("href"));
         });
@@ -70,19 +70,22 @@ const scrapeDetails = async (sourceLinks) => {
 };
 
 const saveDatas = async (data: Idata) => {
-    const fs = require("fs");
-
-    fs.writeFile("../../../data.json", JSON.stringify(data), "utf8", function (err) {
-        if (err) {
-            return console.log(err);
-        }
+    fs.writeFile("./data.json", JSON.stringify(data), "utf8", function (err) {
+        if (err) throw err;
 
         console.log("The file was saved!");
     });
 };
 
 const scrapeJobs = async (req, res) => {
-    console.log("scrape details");
+    let sourceLinks;
+    req.query.startPage ? (sourceLinks = await scrapePages(req.query.startPage, req.query.endPage)) : (sourceLinks = await scrapePages(1, 1));
+
+    let jobDetails = await scrapeDetails(sourceLinks);
+
+    let saveData = await saveDatas(jobDetails);
+
+    return res.status(200).send({ message: "We save data to json file succesfully." });
 };
 
 export default scrapeJobs;
