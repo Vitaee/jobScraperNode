@@ -10,12 +10,6 @@ app.set("trust proxy", true);
 
 import Routes from "./api/routes";
 
-app.get("/", (req, res) => {
-    res.status(200).json({ resultMessage: "Our App is successfully working..." });
-});
-
-app.use("/", Routes);
-
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -41,6 +35,12 @@ app.use((error, req, res, next) => {
         res.json(error.message, "External Error");
     }
 });
+
+app.get("/", (req, res) => {
+    res.status(200).json({ resultMessage: "Our App is successfully working..." });
+});
+
+app.use("/", Routes);
 
 app.listen(process.env.PORT, () => console.log(`Server is running on ${process.env.PORT}`));
 
