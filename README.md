@@ -1,6 +1,6 @@
 # Job List Scraper Node & TypeScript
 
-This project includes Beekin's "Web Scraper Task" project developed by me according to requirements
+This project includes Beekin's "Web Scraper Task" project developed by me according to requirements.
 
 ## Run project
 
@@ -139,3 +139,14 @@ Example output
     "message": "We save data to json file succesfully."
 }
 ```
+
+# Technologies used
+
+<code><a href="https://nodejs.org/en/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg"></a></code>
+<code><a href="https://expressjs.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.svg"></a></code>
+<code><a href="https://www.typescriptlang.org/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg"></a></code>
+
+### Should be add
+
+<code><a href="https://www.mongodb.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/mongodb/mongodb-ar21.svg"></a></code>
+<code><a href="https://www.docker.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/docker/docker-official.svg"></a></code>
